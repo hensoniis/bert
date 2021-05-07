@@ -726,13 +726,13 @@ if __name__ == '__main__':
 	####fwd_dataloader_t = get_FGC_dataloader('test', bwd=False, batch_size=16, num_workers=16, datapath_list=['movieqa_test.json'])
 	####bwd_dataloader_t = get_FGC_dataloader('test', bwd=True, batch_size=16, num_workers=16, datapath_list=['movieqa_test.json'])
 
-	fwd_dataloader_tr = get_FGC_dataloader('dev', bwd=False, batch_size=4, num_workers=16, datapath_list=['movieqa_train.json'])
-	bwd_dataloader_tr = get_FGC_dataloader('dev', bwd=True, batch_size=4, num_workers=16, datapath_list=['movieqa_train.json'])
+	fwd_dataloader_tr = get_FGC_dataloader('dev', bwd=False, batch_size=16, num_workers=16, datapath_list=['movieqa_train.json'])
+	bwd_dataloader_tr = get_FGC_dataloader('dev', bwd=True, batch_size=16, num_workers=16, datapath_list=['movieqa_train.json'])
 
-	fwd_dataloader_d = get_FGC_dataloader('dev', bwd=False, batch_size=4, num_workers=16, datapath_list=['movieqa_dev.json'])
-	bwd_dataloader_d = get_FGC_dataloader('dev', bwd=True, batch_size=4, num_workers=16, datapath_list=['movieqa_dev.json'])
-	fwd_dataloader_t = get_FGC_dataloader('test', bwd=False, batch_size=4, num_workers=16, datapath_list=['movieqa_test.json'])
-	bwd_dataloader_t = get_FGC_dataloader('test', bwd=True, batch_size=4, num_workers=16, datapath_list=['movieqa_test.json'])
+	fwd_dataloader_d = get_FGC_dataloader('dev', bwd=False, batch_size=16, num_workers=16, datapath_list=['movieqa_dev.json'])
+	bwd_dataloader_d = get_FGC_dataloader('dev', bwd=True, batch_size=16, num_workers=16, datapath_list=['movieqa_dev.json'])
+	fwd_dataloader_t = get_FGC_dataloader('test', bwd=False, batch_size=16, num_workers=16, datapath_list=['movieqa_test.json'])
+	bwd_dataloader_t = get_FGC_dataloader('test', bwd=True, batch_size=16, num_workers=16, datapath_list=['movieqa_test.json'])
 
 
 	for itr in tqdm(range(20)):
@@ -752,8 +752,8 @@ if __name__ == '__main__':
 				   start_positions=start_positions, end_positions=end_positions)
 
 
-			print(tmp[0])
-			print(type(tmp[0]))
+			#print(tmp[0])
+			#print(type(tmp[0]))
 			####print(type(loss))
 			####sys.exit()
 			tmp[0].backward()
