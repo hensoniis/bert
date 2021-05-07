@@ -1,7 +1,10 @@
 import os
 import sys
 import torch
-from torch.optim import AdamW
+#from torch.optim import AdamW
+
+from torch.optim import Adam	#pytorch版本較低
+
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import Dataset, DataLoader
 from transformers import BertTokenizer, BertForQuestionAnswering, BertForSequenceClassification, BertModel
@@ -695,7 +698,9 @@ if __name__ == '__main__':
 	# model = BertForQuestionAnswering.from_pretrained('roberta_large_lm_finetune')
 
 	model.to(device)
-	optimizer = AdamW(model.parameters(), lr=lr, betas=(0.9, 0.999), eps=1e-8, weight_decay=1e-2, amsgrad=False)
+	#optimizer = AdamW(model.parameters(), lr=lr, betas=(0.9, 0.999), eps=1e-8, weight_decay=1e-2, amsgrad=False)
+	optimizer = Adam(model.parameters(), lr=lr, betas=(0.9, 0.999), eps=1e-8, weight_decay=1e-2, amsgrad=False)
+	
 	optimizer.zero_grad()
 
 	em_dev_best = 0
