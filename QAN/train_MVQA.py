@@ -31,8 +31,6 @@ from opencc import OpenCC
 from tqdm import tqdm
 
 
-
-
 import pdb
 
 cc = OpenCC('tw2sp')
@@ -42,6 +40,11 @@ if len(sys.argv) == 1:
 else:
 	device = torch.device(sys.argv[1])
 '''
+
+
+log_file = open("log_file.txt","w")	#紀錄訓練過程
+
+
 
 device = torch.device('cuda:0')
 
@@ -605,6 +608,8 @@ def validate(model, fwd_dataloader_d, bwd_dataloader_d, fwd_dataloader_t, bwd_da
 	
 	print('%d-best | val_em=%.5f, val_f1=%.5f | test_em=%.5f, test_f1=%.5f' \
 		% (topk, val_avg_em, val_avg_f1, test_avg_em, test_avg_f1))
+	print('%d-best | val_em=%.5f, val_f1=%.5f | test_em=%.5f, test_f1=%.5f' \
+		% (topk, val_avg_em, val_avg_f1, test_avg_em, test_avg_f1),f = log_file)	#紀錄
 	return val_avg_f1
 
 def validate_train(model, fwd_dataloader, bwd_dataloader, topk=1):
@@ -614,6 +619,7 @@ def validate_train(model, fwd_dataloader, bwd_dataloader, topk=1):
 	test_avg_em = 100 * test_em / test_count
 	test_avg_f1 = 100 * test_f1 / test_count
 	print('%d-best | test_em=%.5f, test_f1=%.5f' % (topk,  test_avg_em, test_avg_f1))
+	print('%d-best | test_em=%.5f, test_f1=%.5f' % (topk,  test_avg_em, test_avg_f1),f = log_file)	#紀錄
 	return test_avg_f1
 
 
@@ -767,6 +773,7 @@ if __name__ == '__main__':
 
 
 		print("step %d | Validating..." % step)
+		print("step %d | Validating..." % step,f=log_file)	#紀錄
 		_ = validate_train(model, fwd_dataloader_tr, bwd_dataloader_tr, topk=1)
 		val_f1 = validate(model, fwd_dataloader_d, bwd_dataloader_d, fwd_dataloader_t, bwd_dataloader_t, topk=1)
 
@@ -777,5 +784,8 @@ if __name__ == '__main__':
 
 			f1_best = val_f1
 			print("f1_best %s" % f1_best)
+			print("f1_best %s" % f1_best,f=log_file)	#紀錄
+	
+	log_file.close()
 
 	
