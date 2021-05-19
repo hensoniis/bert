@@ -1,0 +1,16 @@
+<modeling.BertConfig object at 0x7fe9655cfca0>
+#########################################
+True
+#########################################
+Tensor("IteratorGetNext:0", shape=(16, 128), dtype=int32, device=/device:CPU:0)
+#########################################
+Tensor("IteratorGetNext:1", shape=(16, 128), dtype=int32, device=/device:CPU:0)
+#########################################
+Tensor("IteratorGetNext:3", shape=(16, 128), dtype=int32, device=/device:CPU:0)
+#########################################
+Tensor("IteratorGetNext:2", shape=(16, 128), dtype=int32, device=/device:CPU:0)
+#########################################
+11
+#########################################
+False
+#########################################
