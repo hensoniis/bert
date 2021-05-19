@@ -38,24 +38,24 @@ def main():
 	
 		#print(ws)
 	tmp = []
-	for text in input_data.readlines()[:10] :
+	for text in input_data.readlines()[:16]: #由此控制轉換數量
 		tmp.append(text.replace('\n',''))
 	
-	print(tmp)
+	#print(tmp)
 	ws = ws_driver(tmp)
-	print(ws)
+	#print(ws)
 	for i in ws :
 		for j in i :
 			if len(j) > 1 :
 				step = 0
 				for _tmp_ in j :
 					if step == 0 :
-						output_result.write(_tmp_+'\t'+'B'+'\n')
+						output_result.write(_tmp_+' '+'B'+'\n')
 					else :
-						output_result.write(_tmp_+'\t'+'I'+'\n')
+						output_result.write(_tmp_+' '+'I'+'\n')
 					step += 1
 			else :
-				output_result.write(j+'\t'+'O'+'\n')
+				output_result.write(j+' '+'O'+'\n')
 		output_result.write('\n')
 	
 	
@@ -85,6 +85,6 @@ def pack_ws_pos_sentece(sentence_ws, sentence_pos):
 	return '\u3000'.join(res)
 
 if __name__ == '__main__':
-	output_result = open('ws_result','w')
+	output_result = open('ws_result_16.txt','w')
 	main()
 	output_result.close()
